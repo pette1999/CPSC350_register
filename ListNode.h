@@ -1,4 +1,4 @@
-#include<iostream>;
+#include <iostream>
 
 using namespace std;
 
@@ -11,28 +11,25 @@ public:
     ~ListNode();
 
     T data;
-    ListNode<T> *next;
-    ListNode<T> *prev;
+    ListNode *next;
+    ListNode *prev;
 };
-
 template <class T>
-ListNode<T>::ListNode()
+ListNode<T>::ListNode() 
 {
-    next = nullptr;
-    prev = nullptr;
+    next = NULL;
+    prev = NULL;
 }
 
 template <class T>
 ListNode<T>::ListNode(T d)
 {
     data = d;
-    next = nullptr; //nullptr
-    prev = nullptr; //nullptr
+    next = NULL;
+    prev = NULL;
 }
 
 template <class T>
 ListNode<T>::~ListNode()
 {
-    delete next;
-    delete prev;
 }

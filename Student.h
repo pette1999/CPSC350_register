@@ -12,6 +12,9 @@ public:
     int getClockTime();
     int getWaitTime();
     int getWorkTime();
+    string printStudent();
+    void timePass();
+    void increaseWaitingTime();
 
     int clockTime;
     int waitTime;

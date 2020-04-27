@@ -1,5 +1,5 @@
-#include "DoublyLinkedList.h"
 #include <iostream>
+#include "DoublyLinkedList.h"
 
 using namespace std;
 
@@ -7,87 +7,92 @@ template <class T>
 class GenQueue
 {
 public:
-    GenQueue();           //constructor
-    ~GenQueue();          //destructor
-    void insert(T *data); //insert T pointer
-    T *remove();          //remove and return T pointer
-    T *peek();
+    GenQueue();
+    ~GenQueue();
 
-    bool isEmpty();
-    int getSize();
-
+    void insert(T d);
     void printQueue();
+    void printStudentQueue();
+    T remove();
+    T peek();
+    bool isFull();
+    bool isEmpty();
+    ListNode<T> *front;
+    ListNode<T> *back;
+    int numElements;
+    int GetSize();
 
-    DoublyLinkedList<T> *myQueue;
-
-private:
-    int size;
+    DoublyLinkedList<T> list;
 };
-
-//Template Functions============================================================
 template <class T>
 GenQueue<T>::GenQueue()
 {
-    size = 0;
-    myQueue = new DoublyLinkedList<T>;
+    DoublyLinkedList<T> list;
+    numElements = 0;
 }
 
 template <class T>
 GenQueue<T>::~GenQueue()
 {
-    delete myQueue;
+    
+}
+
+template <typename T>
+void GenQueue<T>::insert(T d)
+{
+    list.insertBack(d);
+    numElements++;
 }
 
 template <class T>
-void GenQueue<T>::insert(T *data)
+T GenQueue<T>::remove()
 {
-    myQueue->insertBack(data);
-    size++;
-}
-
-template <class T>
-T *GenQueue<T>::remove()
-{
-    if (size < 1)
+    if (list.getSize() == 0)
     {
-        cout << "Queue empty." << endl;
-        exit(EXIT_FAILURE);
+        cout << "Queue is empty" << endl;
     }
     else
     {
-        size--;
-        return myQueue->removeFront();
+        T answer = list.removeFront();
+        return answer;
     }
 }
 
 template <class T>
-T *GenQueue<T>::peek()
+T GenQueue<T>::peek()
 {
-    if (size < 1)
+    if (list.getSize() == 0)
     {
-        cout << "Queue empty." << endl;
-        exit(EXIT_FAILURE);
+        cout << "Queue is empty" << endl;
     }
     else
     {
-        return myQueue->getFront()->data;
+        T answer = list.returnFront();
+        return answer;
     }
 }
 
 template <class T>
 bool GenQueue<T>::isEmpty()
 {
-    return size == 0;
+    return (list.size == 0);
 }
 
 template <class T>
-int GenQueue<T>::getSize()
+int GenQueue<T>::GetSize()
 {
-    return size;
+    int answer = list.getSize();
+    return answer;
+}
+
+template <class T>
+void GenQueue<T>::printStudentQueue()
+{
+    list.printStudentList();
 }
 
 template <class T>
 void GenQueue<T>::printQueue()
 {
-    myQueue->printList();
+    list.printList();
 }
